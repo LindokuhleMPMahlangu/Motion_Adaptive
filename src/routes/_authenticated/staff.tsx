@@ -2,11 +2,12 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
-import { AlertTriangle, Loader2, PhoneCall, Siren, X } from "lucide-react";
+import { AlertTriangle, BarChart3, LayoutList, Loader2, PhoneCall, Siren, X } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/lib/auth";
 import { playAlertSound } from "@/lib/alert-sound";
 import { formatElapsed, formatTime, minutesSince } from "@/lib/time";
+import { StaffTrends } from "@/components/staff-trends";
 
 export const Route = createFileRoute("/_authenticated/staff")({
   head: () => ({ meta: [{ title: "Staff Console — Valence Health" }] }),
@@ -47,6 +48,7 @@ function StaffConsole() {
   const navigate = useNavigate();
   const qc = useQueryClient();
   const [facilityId, setFacilityId] = useState("");
+  const [tab, setTab] = useState<"live" | "trends">("live");
   const [logFor, setLogFor] = useState<Entry | null>(null);
   const [alarmedIds, setAlarmedIds] = useState<Set<string>>(new Set());
   useTick();
@@ -208,6 +210,30 @@ function StaffConsole() {
         </div>
       </div>
 
+      {/* Tabs */}
+      <div className="flex gap-1 p-1 bg-background ring-1 ring-border rounded-lg w-fit">
+        <button
+          onClick={() => setTab("live")}
+          className={`inline-flex items-center gap-2 px-4 py-2 rounded-md text-sm font-bold transition-colors ${
+            tab === "live" ? "bg-surface text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"
+          }`}
+        >
+          <LayoutList className="size-4" /> Live queue
+        </button>
+        <button
+          onClick={() => setTab("trends")}
+          className={`inline-flex items-center gap-2 px-4 py-2 rounded-md text-sm font-bold transition-colors ${
+            tab === "trends" ? "bg-surface text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"
+          }`}
+        >
+          <BarChart3 className="size-4" /> Stats &amp; trends
+        </button>
+      </div>
+
+      {tab === "trends" ? (
+        <StaffTrends facilityId={facilityId} norm={norm} />
+      ) : (
+        <>
       {/* KPI widgets */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         <Kpi label="In live queue" value={String(live.length)} />
@@ -324,6 +350,10 @@ function StaffConsole() {
           </table>
         </div>
       </div>
+        </>
+      )}
+
+
 
       {logFor && (
         <LogCauseModal
