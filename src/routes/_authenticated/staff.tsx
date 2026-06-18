@@ -48,6 +48,7 @@ function StaffConsole() {
   const navigate = useNavigate();
   const qc = useQueryClient();
   const [facilityId, setFacilityId] = useState("");
+  const [tab, setTab] = useState<"live" | "trends">("live");
   const [logFor, setLogFor] = useState<Entry | null>(null);
   const [alarmedIds, setAlarmedIds] = useState<Set<string>>(new Set());
   useTick();
