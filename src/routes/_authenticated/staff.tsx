@@ -210,6 +210,30 @@ function StaffConsole() {
         </div>
       </div>
 
+      {/* Tabs */}
+      <div className="flex gap-1 p-1 bg-background ring-1 ring-border rounded-lg w-fit">
+        <button
+          onClick={() => setTab("live")}
+          className={`inline-flex items-center gap-2 px-4 py-2 rounded-md text-sm font-bold transition-colors ${
+            tab === "live" ? "bg-surface text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"
+          }`}
+        >
+          <LayoutList className="size-4" /> Live queue
+        </button>
+        <button
+          onClick={() => setTab("trends")}
+          className={`inline-flex items-center gap-2 px-4 py-2 rounded-md text-sm font-bold transition-colors ${
+            tab === "trends" ? "bg-surface text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"
+          }`}
+        >
+          <BarChart3 className="size-4" /> Stats &amp; trends
+        </button>
+      </div>
+
+      {tab === "trends" ? (
+        <StaffTrends facilityId={facilityId} norm={norm} />
+      ) : (
+        <>
       {/* KPI widgets */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         <Kpi label="In live queue" value={String(live.length)} />
