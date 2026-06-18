@@ -168,17 +168,17 @@ export function StaffTrends({ facilityId, norm }: { facilityId: string; norm: nu
             <AreaChart data={series} margin={{ top: 8, right: 8, left: -16, bottom: 0 }}>
               <defs>
                 <linearGradient id="waitFill" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="hsl(var(--primary))" stopOpacity={0.3} />
-                  <stop offset="100%" stopColor="hsl(var(--primary))" stopOpacity={0} />
+                  <stop offset="0%" stopColor="var(--primary)" stopOpacity={0.3} />
+                  <stop offset="100%" stopColor="var(--primary)" stopOpacity={0} />
                 </linearGradient>
               </defs>
-              <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" vertical={false} />
-              <XAxis dataKey="day" tick={{ fontSize: 10 }} stroke="hsl(var(--muted-foreground))" />
-              <YAxis tick={{ fontSize: 10 }} stroke="hsl(var(--muted-foreground))" />
+              <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" vertical={false} />
+              <XAxis dataKey="day" tick={{ fontSize: 10 }} stroke="var(--muted-foreground)" />
+              <YAxis tick={{ fontSize: 10 }} stroke="var(--muted-foreground)" />
               <Tooltip
                 contentStyle={{
-                  background: "hsl(var(--surface))",
-                  border: "1px solid hsl(var(--border))",
+                  background: "var(--surface)",
+                  border: "1px solid var(--border)",
                   borderRadius: 8,
                   fontSize: 12,
                 }}
@@ -186,7 +186,7 @@ export function StaffTrends({ facilityId, norm }: { facilityId: string; norm: nu
               <Area
                 type="monotone"
                 dataKey="avgWait"
-                stroke="hsl(var(--primary))"
+                stroke="var(--primary)"
                 strokeWidth={2}
                 fill="url(#waitFill)"
                 name="Avg wait (min)"
@@ -198,19 +198,19 @@ export function StaffTrends({ facilityId, norm }: { facilityId: string; norm: nu
         <Panel title="Daily volume & over-norm" subtitle="Patients served vs delayed">
           <ResponsiveContainer width="100%" height={220}>
             <BarChart data={series} margin={{ top: 8, right: 8, left: -16, bottom: 0 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" vertical={false} />
-              <XAxis dataKey="day" tick={{ fontSize: 10 }} stroke="hsl(var(--muted-foreground))" />
-              <YAxis tick={{ fontSize: 10 }} stroke="hsl(var(--muted-foreground))" />
+              <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" vertical={false} />
+              <XAxis dataKey="day" tick={{ fontSize: 10 }} stroke="var(--muted-foreground)" />
+              <YAxis tick={{ fontSize: 10 }} stroke="var(--muted-foreground)" />
               <Tooltip
                 contentStyle={{
-                  background: "hsl(var(--surface))",
-                  border: "1px solid hsl(var(--border))",
+                  background: "var(--surface)",
+                  border: "1px solid var(--border)",
                   borderRadius: 8,
                   fontSize: 12,
                 }}
               />
-              <Bar dataKey="volume" fill="hsl(var(--primary))" radius={[3, 3, 0, 0]} name="Served" />
-              <Bar dataKey="overdue" fill="hsl(var(--alert))" radius={[3, 3, 0, 0]} name="Over norm" />
+              <Bar dataKey="volume" fill="var(--primary)" radius={[3, 3, 0, 0]} name="Served" />
+              <Bar dataKey="overdue" fill="var(--alert)" radius={[3, 3, 0, 0]} name="Over norm" />
             </BarChart>
           </ResponsiveContainer>
         </Panel>
