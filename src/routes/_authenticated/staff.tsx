@@ -350,6 +350,10 @@ function StaffConsole() {
           </table>
         </div>
       </div>
+        </>
+      )}
+
+
 
       {logFor && (
         <LogCauseModal
