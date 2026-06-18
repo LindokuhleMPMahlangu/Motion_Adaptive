@@ -2,11 +2,12 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
-import { AlertTriangle, Loader2, PhoneCall, Siren, X } from "lucide-react";
+import { AlertTriangle, BarChart3, LayoutList, Loader2, PhoneCall, Siren, X } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/lib/auth";
 import { playAlertSound } from "@/lib/alert-sound";
 import { formatElapsed, formatTime, minutesSince } from "@/lib/time";
+import { StaffTrends } from "@/components/staff-trends";
 
 export const Route = createFileRoute("/_authenticated/staff")({
   head: () => ({ meta: [{ title: "Staff Console — Valence Health" }] }),
