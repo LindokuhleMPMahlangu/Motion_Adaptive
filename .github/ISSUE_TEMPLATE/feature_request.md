@@ -23,7 +23,7 @@ Any alternative approaches or workarounds.
 - [ ] Patients
 - [ ] Staff
 - [ ] Admin
-- [ ] Other: ****\_\_\_\_****
+- [ ] Other: \***\*\_\_\_\_\*\***
 
 ## Additional context
 

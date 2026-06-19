@@ -12,7 +12,7 @@ Closes #(issue number)
 - [ ] New feature
 - [ ] Refactor / code quality
 - [ ] Documentation
-- [ ] Other: ****\_\_\_\_****
+- [ ] Other: \***\*\_\_\_\_\*\***
 
 ## Checklist
 

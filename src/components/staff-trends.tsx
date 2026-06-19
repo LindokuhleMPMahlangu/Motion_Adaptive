@@ -79,7 +79,6 @@ export function StaffTrends({ facilityId, norm }: { facilityId: string; norm: nu
   const completed = useMemo(() => completedQ.data ?? [], [completedQ.data]);
   const alerts = useMemo(() => alertsQ.data ?? [], [alertsQ.data]);
 
-
   // Build a continuous day series for the window.
   const series = useMemo(() => {
     const days: { key: string; date: string; waits: number[]; volume: number; overdue: number }[] =
