@@ -86,9 +86,10 @@ function Landing() {
             Put the waiting room in your patients' hands.
           </h1>
           <p className="mt-6 text-lg text-muted-foreground max-w-xl text-pretty">
-            Valence Health turns long, uncertain queues into a live, transparent flow. Patients book
+            MA Health turns long, uncertain queues into a live, transparent flow. Patients book
             ahead or scan in, watch their position move in real time, and staff are alerted the
             moment a wait runs too long.
+            It uses analytics reporting, and push-notification delivery — all from a single progressive web app!
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Link
@@ -140,7 +141,7 @@ function Landing() {
         <div className="max-w-7xl mx-auto px-6 py-8 flex flex-col sm:flex-row justify-between items-center gap-4">
           <Logo />
           <p className="text-sm text-muted-foreground">
-            Built to combat long healthcare queues — one transparent wait at a time.
+            Built to combat long healthcare queues — *"Time heals what reason cannot."*.
           </p>
         </div>
       </footer>

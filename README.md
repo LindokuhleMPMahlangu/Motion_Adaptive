@@ -2,7 +2,7 @@
 
 A full-stack queue-management app for hospitals, clinics, and pharmacies, designed to combat long healthcare queues (G13 problem). Patients can book in advance, scan themselves in on arrival, track their live queue position, and check themselves out. Staff manage the live queue from a clinical console, receive audible and visual alerts when waits exceed a facility's norm, and use the Stats & Trends tab to pull past data and identify areas of improvement.
 
-> **Live preview:** `https://id-preview--ba8e901c-1ae2-410e-874d-51dacedbc0d0.lovable.app`
+> **Live preview:** `https://motionadaptive.app`
 
 ---
 
@@ -24,6 +24,7 @@ A full-stack queue-management app for hospitals, clinics, and pharmacies, design
 14. [Design system](#design-system)
 15. [Security notes](#security-notes)
 16. [License](#license)
+17. [Features](#features)
 
 ---
 
@@ -314,4 +315,46 @@ Private / proprietary — built for the Valence Health healthcare queue-manageme
 
 ---
 
-Built with TanStack Start, Tailwind CSS, and Lovable Cloud.
+The application is a fully compiled Flutter Web app served as a static site on GitHub Pages, mapped via the `CNAME` record to the custom domain above.
+
+---
+
+## Features
+
+### 🏥 Queue Management
+- Real-time live queue display (patient number, queue number, time IN/OUT, waiting time, status)
+- Patient filtering by patient number and date range
+- Paginated queue history (`/api/queue/all?page=X&size=Y`)
+- Delete queue entries
+- Batch live-queue status updates
+
+### 📊 Analytics & Reporting
+- Today / Yesterday / Weekly stats dashboards
+- Custom date-range calculations with optional incomplete sessions
+- Period-over-period comparison reports
+- Automatic insights:
+  - Monday high-volume pattern detection
+  - Long-wait patient alerts (>60 min)
+  - Peak-hour congestion warnings
+  - SLA compliance tracking (20-minute target)
+- Export to **CSV** and **Excel** (`Queue_Data_<date>.csv`, `Analytics_<date>.csv`)
+
+### 🔐 User Management
+- Email + password authentication via **Supabase Auth**
+- Forgot password / magic-link set-password flow
+- Email change with confirmation link
+- Role-based access: **User** and **Admin**
+- Tenant application workflow (apply → pending → approved / rejected / blocked / reinstated)
+
+### 🛠 Admin Panel
+- Application management (approve / reject / block / reinstate)
+- Activity log with export and refresh
+- Settings (show-blocked-by-default toggle)
+
+### 🦴 Ortho Express Module
+- Parcel listing, matching, and mass-erase operations
+- Bearer-token–protected data management
+
+### 📲 Push Notifications
+- Firebase Cloud Messaging (FCM) for foreground and background messages
+- Background notifications shown via service worker with vibration pattern and app icon
