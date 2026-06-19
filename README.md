@@ -47,18 +47,18 @@ Long, uncertain waiting times are a daily source of patient dissatisfaction and 
 
 ## Tech stack
 
-| Layer | Technology |
-|-------|------------|
-| Framework | TanStack Start v1 (full-stack React 19, Vite 7) |
-| UI library | React 19, TypeScript |
-| Styling | Tailwind CSS v4, OKLCH semantic tokens, custom animations |
-| Components | Radix UI primitives + shadcn/ui patterns |
-| Data fetching | TanStack Query |
-| Backend | Lovable Cloud (Supabase) — PostgreSQL + Auth + Realtime |
-| Charts | Recharts |
-| Icons | Lucide React |
-| Form validation | Zod |
-| Toasts | Sonner |
+| Layer           | Technology                                                |
+| --------------- | --------------------------------------------------------- |
+| Framework       | TanStack Start v1 (full-stack React 19, Vite 7)           |
+| UI library      | React 19, TypeScript                                      |
+| Styling         | Tailwind CSS v4, OKLCH semantic tokens, custom animations |
+| Components      | Radix UI primitives + shadcn/ui patterns                  |
+| Data fetching   | TanStack Query                                            |
+| Backend         | Lovable Cloud (Supabase) — PostgreSQL + Auth + Realtime   |
+| Charts          | Recharts                                                  |
+| Icons           | Lucide React                                              |
+| Form validation | Zod                                                       |
+| Toasts          | Sonner                                                    |
 
 ---
 
@@ -113,13 +113,13 @@ Long, uncertain waiting times are a daily source of patient dissatisfaction and 
 
 ### Core tables
 
-| Table | Purpose |
-|-------|---------|
-| `profiles` | One-to-one extension of `auth.users`; stores `full_name`. |
-| `user_roles` | Separate role table (patient, staff, admin). Roles are never stored on the user row. |
-| `facilities` | Hospitals, clinics, and pharmacies with norm wait time, average service time, and services list. |
+| Table           | Purpose                                                                                                                           |
+| --------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| `profiles`      | One-to-one extension of `auth.users`; stores `full_name`.                                                                         |
+| `user_roles`    | Separate role table (patient, staff, admin). Roles are never stored on the user row.                                              |
+| `facilities`    | Hospitals, clinics, and pharmacies with norm wait time, average service time, and services list.                                  |
 | `queue_entries` | A patient’s booking or live queue entry. Tracks status, emergency flag, booked-for time, check-in/out timestamps, and alert flag. |
-| `alert_logs` | Root-cause log for over-norm delays, including cause, prevention step, and wait minutes. |
+| `alert_logs`    | Root-cause log for over-norm delays, including cause, prevention step, and wait minutes.                                          |
 
 ### Key functions
 
@@ -263,14 +263,14 @@ SUPABASE_SERVICE_ROLE_KEY
 
 ## Available scripts
 
-| Script | Command | Purpose |
-|--------|---------|---------|
-| Dev | `bun run dev` | Start the Vite dev server with HMR |
-| Build | `bun run build` | Production build |
-| Build dev | `bun run build:dev` | Development-mode build |
-| Preview | `bun run preview` | Preview the production build locally |
-| Lint | `bun run lint` | Run ESLint |
-| Format | `bun run format` | Run Prettier |
+| Script    | Command             | Purpose                              |
+| --------- | ------------------- | ------------------------------------ |
+| Dev       | `bun run dev`       | Start the Vite dev server with HMR   |
+| Build     | `bun run build`     | Production build                     |
+| Build dev | `bun run build:dev` | Development-mode build               |
+| Preview   | `bun run preview`   | Preview the production build locally |
+| Lint      | `bun run lint`      | Run ESLint                           |
+| Format    | `bun run format`    | Run Prettier                         |
 
 ---
 

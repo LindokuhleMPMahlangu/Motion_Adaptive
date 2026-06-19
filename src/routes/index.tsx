@@ -1,5 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Activity, AlarmClock, CalendarClock, QrCode, ShieldCheck, Stethoscope } from "lucide-react";
+import {
+  Activity,
+  AlarmClock,
+  CalendarClock,
+  QrCode,
+  ShieldCheck,
+  Stethoscope,
+} from "lucide-react";
 import { Logo } from "@/components/brand";
 import heroImage from "@/assets/hero-waiting.jpg";
 
@@ -7,9 +14,17 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Valence Health — Beat the Queue at Hospitals, Clinics & Pharmacies" },
-      { name: "description", content: "Book ahead, scan yourself in for emergencies, track your live queue position, and trigger instant alerts when waiting time runs long. Valence Health tackles long healthcare queues." },
+      {
+        name: "description",
+        content:
+          "Book ahead, scan yourself in for emergencies, track your live queue position, and trigger instant alerts when waiting time runs long. Valence Health tackles long healthcare queues.",
+      },
       { property: "og:title", content: "Valence Health — Beat the Queue" },
-      { property: "og:description", content: "Live queue tracking and waiting-time alerts for hospitals, clinics and pharmacies." },
+      {
+        property: "og:description",
+        content:
+          "Live queue tracking and waiting-time alerts for hospitals, clinics and pharmacies.",
+      },
       { property: "og:image", content: heroImage },
       { name: "twitter:image", content: heroImage },
     ],
@@ -71,9 +86,9 @@ function Landing() {
             Put the waiting room in your patients' hands.
           </h1>
           <p className="mt-6 text-lg text-muted-foreground max-w-xl text-pretty">
-            Valence Health turns long, uncertain queues into a live, transparent flow.
-            Patients book ahead or scan in, watch their position move in real time, and
-            staff are alerted the moment a wait runs too long.
+            Valence Health turns long, uncertain queues into a live, transparent flow. Patients book
+            ahead or scan in, watch their position move in real time, and staff are alerted the
+            moment a wait runs too long.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Link

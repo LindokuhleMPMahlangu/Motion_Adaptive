@@ -70,7 +70,11 @@ function AuthPage() {
       // Navigation handled by the effect once auth state updates.
     } catch (err) {
       const msg = err instanceof Error ? err.message : "Something went wrong";
-      toast.error(msg.includes("already registered") ? "That email is already registered. Try signing in." : msg);
+      toast.error(
+        msg.includes("already registered")
+          ? "That email is already registered. Try signing in."
+          : msg,
+      );
     } finally {
       setBusy(false);
     }
@@ -94,7 +98,9 @@ function AuthPage() {
             {isSignup && (
               <>
                 <div>
-                  <label className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Full name</label>
+                  <label className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                    Full name
+                  </label>
                   <input
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
@@ -104,7 +110,9 @@ function AuthPage() {
                   />
                 </div>
                 <div>
-                  <label className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">I am a</label>
+                  <label className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                    I am a
+                  </label>
                   <div className="mt-1.5 grid grid-cols-2 gap-2">
                     {(["patient", "staff"] as const).map((r) => (
                       <button
@@ -125,7 +133,9 @@ function AuthPage() {
               </>
             )}
             <div>
-              <label className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Email</label>
+              <label className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                Email
+              </label>
               <input
                 type="email"
                 value={email}
@@ -135,7 +145,9 @@ function AuthPage() {
               />
             </div>
             <div>
-              <label className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Password</label>
+              <label className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                Password
+              </label>
               <input
                 type="password"
                 value={password}
@@ -165,7 +177,9 @@ function AuthPage() {
             </button>
           </p>
           <p className="text-xs text-muted-foreground/70 mt-4 text-center">
-            <Link to="/" className="hover:underline">← Back home</Link>
+            <Link to="/" className="hover:underline">
+              ← Back home
+            </Link>
           </p>
         </div>
       </div>

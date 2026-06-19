@@ -1,10 +1,4 @@
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useState,
-  type ReactNode,
-} from "react";
+import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 import type { User } from "@supabase/supabase-js";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -21,7 +15,9 @@ interface AuthState {
 
 const AuthContext = createContext<AuthState | undefined>(undefined);
 
-async function loadRoleAndName(userId: string): Promise<{ role: AppRole | null; fullName: string }> {
+async function loadRoleAndName(
+  userId: string,
+): Promise<{ role: AppRole | null; fullName: string }> {
   const [{ data: roles }, { data: profile }] = await Promise.all([
     supabase.from("user_roles").select("role").eq("user_id", userId),
     supabase.from("profiles").select("full_name").eq("id", userId).maybeSingle(),

@@ -76,22 +76,30 @@ export function StaffTrends({ facilityId, norm }: { facilityId: string; norm: nu
     },
   });
 
-  const completed = completedQ.data ?? [];
-  const alerts = alertsQ.data ?? [];
+  const completed = useMemo(() => completedQ.data ?? [], [completedQ.data]);
+  const alerts = useMemo(() => alertsQ.data ?? [], [alertsQ.data]);
 
   // Build a continuous day series for the window.
   const series = useMemo(() => {
-    const days: { key: string; date: string; waits: number[]; volume: number; overdue: number }[] = [];
+    const days: { key: string; date: string; waits: number[]; volume: number; overdue: number }[] =
+      [];
     for (let i = DAYS - 1; i >= 0; i--) {
       const d = new Date();
       d.setDate(d.getDate() - i);
-      days.push({ key: dayKey(d.toISOString()), date: d.toDateString(), waits: [], volume: 0, overdue: 0 });
+      days.push({
+        key: dayKey(d.toISOString()),
+        date: d.toDateString(),
+        waits: [],
+        volume: 0,
+        overdue: 0,
+      });
     }
     const byDate = new Map(days.map((d) => [d.date, d]));
     completed.forEach((e) => {
       const bucket = byDate.get(new Date(e.checked_out_at).toDateString());
       if (!bucket) return;
-      const mins = (new Date(e.checked_out_at).getTime() - new Date(e.checked_in_at).getTime()) / 60000;
+      const mins =
+        (new Date(e.checked_out_at).getTime() - new Date(e.checked_in_at).getTime()) / 60000;
       bucket.waits.push(mins);
       bucket.volume += 1;
       if (mins >= norm) bucket.overdue += 1;
@@ -220,16 +228,21 @@ export function StaffTrends({ facilityId, norm }: { facilityId: string; norm: nu
         <div className="flex items-center gap-2 mb-4">
           <Lightbulb className="size-4 text-primary" />
           <h4 className="font-display font-extrabold">Areas of improvement</h4>
-          <span className="text-xs text-muted-foreground">— recurring causes from logged delays</span>
+          <span className="text-xs text-muted-foreground">
+            — recurring causes from logged delays
+          </span>
         </div>
         {topCauses.length === 0 ? (
           <p className="text-sm text-muted-foreground py-6 text-center">
-            No over-norm delays logged in the last {DAYS} days. 
+            No over-norm delays logged in the last {DAYS} days.
           </p>
         ) : (
           <ul className="space-y-3">
             {topCauses.map(({ count, sample }) => (
-              <li key={sample.id} className="flex gap-3 p-3 rounded-lg bg-background ring-1 ring-border">
+              <li
+                key={sample.id}
+                className="flex gap-3 p-3 rounded-lg bg-background ring-1 ring-border"
+              >
                 <span className="shrink-0 size-7 grid place-items-center rounded-md bg-alert/10 text-alert font-mono font-bold text-xs">
                   {count}×
                 </span>
@@ -237,7 +250,8 @@ export function StaffTrends({ facilityId, norm }: { facilityId: string; norm: nu
                   <p className="text-sm font-semibold">{sample.cause}</p>
                   {sample.prevention && (
                     <p className="text-xs text-success mt-0.5">
-                      <span className="font-bold uppercase tracking-wide">Fix:</span> {sample.prevention}
+                      <span className="font-bold uppercase tracking-wide">Fix:</span>{" "}
+                      {sample.prevention}
                     </p>
                   )}
                   <p className="text-[10px] font-mono text-muted-foreground mt-1">
@@ -270,7 +284,9 @@ function Stat({
 }) {
   return (
     <div className={`bg-surface ring-1 p-4 rounded-xl ${alert ? "ring-alert/30" : "ring-border"}`}>
-      <p className="text-[10px] font-mono text-muted-foreground uppercase tracking-widest">{label}</p>
+      <p className="text-[10px] font-mono text-muted-foreground uppercase tracking-widest">
+        {label}
+      </p>
       <p
         className={`text-2xl font-display font-extrabold flex items-center gap-1 ${
           alert ? "text-alert" : good ? "text-success" : ""
