@@ -103,7 +103,7 @@ function StaffConsole() {
   const facility = facilitiesQ.data?.find((f) => f.id === facilityId);
   const norm = facility?.norm_wait_minutes ?? 30;
 
-  const all = entriesQ.data ?? [];
+  const all = useMemo(() => entriesQ.data ?? [], [entriesQ.data]);
   const live = useMemo(() => {
     return all
       .filter((e) => (e.status === "waiting" || e.status === "in_service") && e.checked_in_at)
