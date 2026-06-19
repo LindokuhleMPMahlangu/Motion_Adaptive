@@ -12,4 +12,12 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
+  nitro: {
+    // Use Netlify preset so the SSR handler is emitted to .netlify/functions-internal/
+    preset: "netlify",
+    output: {
+      // Align with Vite's client output so _redirects/_headers land in the publish dir
+      publicDir: "dist/client",
+    },
+  },
 });
