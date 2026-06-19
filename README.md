@@ -1,4 +1,4 @@
-# Valence Health
+# MOTION ADAPTIVE HEALTH
 
 A full-stack queue-management app for hospitals, clinics, and pharmacies, designed to combat long healthcare queues (G13 problem). Patients can book in advance, scan themselves in on arrival, track their live queue position, and check themselves out. Staff manage the live queue from a clinical console, receive audible and visual alerts when waits exceed a facility's norm, and use the Stats & Trends tab to pull past data and identify areas of improvement.
 
