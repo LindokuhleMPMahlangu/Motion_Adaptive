@@ -127,21 +127,43 @@
 }
 
 @keyframes pulse-subtle {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.65; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.65;
+  }
 }
 @keyframes alert-throb {
-  0%, 100% { background-color: color-mix(in oklab, var(--alert) 0%, transparent); }
-  50% { background-color: color-mix(in oklab, var(--alert) 10%, transparent); }
+  0%,
+  100% {
+    background-color: color-mix(in oklab, var(--alert) 0%, transparent);
+  }
+  50% {
+    background-color: color-mix(in oklab, var(--alert) 10%, transparent);
+  }
 }
 @keyframes slide-up {
-  from { transform: translateY(12px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
+  from {
+    transform: translateY(12px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
-.animate-pulse-subtle { animation: pulse-subtle 3s ease-in-out infinite; }
-.animate-alert-throb { animation: alert-throb 2s ease-in-out infinite; }
-.animate-entrance { animation: slide-up 0.6s var(--ease-out-expo) both; }
+.animate-pulse-subtle {
+  animation: pulse-subtle 3s ease-in-out infinite;
+}
+.animate-alert-throb {
+  animation: alert-throb 2s ease-in-out infinite;
+}
+.animate-entrance {
+  animation: slide-up 0.6s var(--ease-out-expo) both;
+}
 
 @layer base {
   * {

@@ -141,7 +141,8 @@ function StaffConsole() {
           completedToday.reduce(
             (sum, e) =>
               sum +
-              (new Date(e.checked_out_at!).getTime() - new Date(e.checked_in_at!).getTime()) / 60000,
+              (new Date(e.checked_out_at!).getTime() - new Date(e.checked_in_at!).getTime()) /
+                60000,
             0,
           ) / completedToday.length
         ).toFixed(1)
@@ -150,7 +151,10 @@ function StaffConsole() {
   const refresh = () => qc.invalidateQueries({ queryKey: ["staff-entries", facilityId] });
 
   const callNext = async (id: string) => {
-    const { error } = await supabase.from("queue_entries").update({ status: "in_service" }).eq("id", id);
+    const { error } = await supabase
+      .from("queue_entries")
+      .update({ status: "in_service" })
+      .eq("id", id);
     if (error) return toast.error(error.message);
     refresh();
   };
@@ -215,7 +219,9 @@ function StaffConsole() {
         <button
           onClick={() => setTab("live")}
           className={`inline-flex items-center gap-2 px-4 py-2 rounded-md text-sm font-bold transition-colors ${
-            tab === "live" ? "bg-surface text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"
+            tab === "live"
+              ? "bg-surface text-foreground shadow-sm"
+              : "text-muted-foreground hover:text-foreground"
           }`}
         >
           <LayoutList className="size-4" /> Live queue
@@ -223,7 +229,9 @@ function StaffConsole() {
         <button
           onClick={() => setTab("trends")}
           className={`inline-flex items-center gap-2 px-4 py-2 rounded-md text-sm font-bold transition-colors ${
-            tab === "trends" ? "bg-surface text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"
+            tab === "trends"
+              ? "bg-surface text-foreground shadow-sm"
+              : "text-muted-foreground hover:text-foreground"
           }`}
         >
           <BarChart3 className="size-4" /> Stats &amp; trends
@@ -234,126 +242,142 @@ function StaffConsole() {
         <StaffTrends facilityId={facilityId} norm={norm} />
       ) : (
         <>
-      {/* KPI widgets */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        <Kpi label="In live queue" value={String(live.length)} />
-        <Kpi label="Over norm" value={String(overdue.length)} alert={overdue.length > 0} />
-        <Kpi label="Avg throughput" value={avgThroughput} suffix=" min/p" />
-        <Kpi label="Norm wait" value={String(norm)} suffix=" min" />
-      </div>
-
-      <div className="bg-surface ring-1 ring-border rounded-xl overflow-hidden shadow-sm">
-        {overdue.length > 0 && (
-          <div className="bg-alert p-4 flex flex-wrap justify-between items-center gap-3 text-alert-foreground animate-alert-throb">
-            <div className="flex items-center gap-3">
-              <Siren className="size-5" />
-              <p className="text-sm font-medium">
-                {overdue[0].patient_name} has waited {minutesSince(overdue[0].checked_in_at)}m —
-                over the {norm}m threshold. Immediate attention required.
-              </p>
-            </div>
-            <button
-              onClick={() => setLogFor(overdue[0])}
-              className="px-4 py-1.5 bg-white text-alert rounded font-bold text-xs uppercase tracking-tight"
-            >
-              Log cause
-            </button>
+          {/* KPI widgets */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+            <Kpi label="In live queue" value={String(live.length)} />
+            <Kpi label="Over norm" value={String(overdue.length)} alert={overdue.length > 0} />
+            <Kpi label="Avg throughput" value={avgThroughput} suffix=" min/p" />
+            <Kpi label="Norm wait" value={String(norm)} suffix=" min" />
           </div>
-        )}
 
-        <div className="overflow-x-auto">
-          <table className="w-full text-left">
-            <thead>
-              <tr className="bg-background text-[10px] font-mono text-muted-foreground uppercase tracking-widest">
-                <th className="px-5 py-4 font-medium">Pos</th>
-                <th className="px-5 py-4 font-medium">Patient</th>
-                <th className="px-5 py-4 font-medium">Checked in</th>
-                <th className="px-5 py-4 font-medium">Elapsed</th>
-                <th className="px-5 py-4 font-medium">Status</th>
-                <th className="px-5 py-4 font-medium text-right">Actions</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-border">
-              {live.length === 0 && (
-                <tr>
-                  <td colSpan={6} className="px-5 py-10 text-center text-sm text-muted-foreground">
-                    No patients in the live queue.
-                  </td>
-                </tr>
-              )}
-              {live.map((e, i) => {
-                const mins = minutesSince(e.checked_in_at);
-                const over = mins >= norm;
-                return (
-                  <tr key={e.id} className={over ? "bg-alert/5 animate-alert-throb" : "hover:bg-background/50 transition-colors"}>
-                    <td className={`px-5 py-4 font-mono font-bold ${over ? "text-alert" : ""}`}>
-                      {String(i + 1).padStart(2, "0")}
-                    </td>
-                    <td className="px-5 py-4">
-                      <span className="text-sm font-semibold">{e.patient_name || "Patient"}</span>
-                      <p className="text-[10px] text-muted-foreground flex items-center gap-1">
-                        {e.service}
-                        {e.is_emergency && (
-                          <span className="text-alert font-bold uppercase">• emergency</span>
-                        )}
-                      </p>
-                    </td>
-                    <td className="px-5 py-4 text-xs text-muted-foreground">
-                      {formatTime(e.checked_in_at)}
-                    </td>
-                    <td className={`px-5 py-4 font-mono text-sm ${over ? "text-alert font-bold" : ""}`}>
-                      {formatElapsed(e.checked_in_at)}
-                    </td>
-                    <td className="px-5 py-4">
-                      <span
-                        className={`inline-block px-2 py-1 text-[10px] font-bold uppercase rounded ${
-                          over
-                            ? "bg-alert text-alert-foreground"
-                            : e.status === "in_service"
-                              ? "bg-success/10 text-success"
-                              : "bg-primary/10 text-primary"
-                        }`}
-                      >
-                        {over ? "Overdue" : e.status === "in_service" ? "In service" : "Waiting"}
-                      </span>
-                    </td>
-                    <td className="px-5 py-4">
-                      <div className="flex justify-end gap-1.5">
-                        {e.status === "waiting" && (
-                          <button
-                            onClick={() => callNext(e.id)}
-                            className="inline-flex items-center gap-1 text-primary text-xs font-bold hover:bg-primary/10 px-2 py-1 rounded transition-colors"
-                          >
-                            <PhoneCall className="size-3.5" /> Call
-                          </button>
-                        )}
-                        <button
-                          onClick={() => complete(e.id)}
-                          className="text-xs font-bold hover:bg-accent px-2 py-1 rounded transition-colors"
-                        >
-                          Done
-                        </button>
-                        {over && (
-                          <button
-                            onClick={() => setLogFor(e)}
-                            className="inline-flex items-center gap-1 text-alert text-xs font-bold hover:bg-alert/10 px-2 py-1 rounded transition-colors"
-                          >
-                            <AlertTriangle className="size-3.5" /> Log
-                          </button>
-                        )}
-                      </div>
-                    </td>
+          <div className="bg-surface ring-1 ring-border rounded-xl overflow-hidden shadow-sm">
+            {overdue.length > 0 && (
+              <div className="bg-alert p-4 flex flex-wrap justify-between items-center gap-3 text-alert-foreground animate-alert-throb">
+                <div className="flex items-center gap-3">
+                  <Siren className="size-5" />
+                  <p className="text-sm font-medium">
+                    {overdue[0].patient_name} has waited {minutesSince(overdue[0].checked_in_at)}m —
+                    over the {norm}m threshold. Immediate attention required.
+                  </p>
+                </div>
+                <button
+                  onClick={() => setLogFor(overdue[0])}
+                  className="px-4 py-1.5 bg-white text-alert rounded font-bold text-xs uppercase tracking-tight"
+                >
+                  Log cause
+                </button>
+              </div>
+            )}
+
+            <div className="overflow-x-auto">
+              <table className="w-full text-left">
+                <thead>
+                  <tr className="bg-background text-[10px] font-mono text-muted-foreground uppercase tracking-widest">
+                    <th className="px-5 py-4 font-medium">Pos</th>
+                    <th className="px-5 py-4 font-medium">Patient</th>
+                    <th className="px-5 py-4 font-medium">Checked in</th>
+                    <th className="px-5 py-4 font-medium">Elapsed</th>
+                    <th className="px-5 py-4 font-medium">Status</th>
+                    <th className="px-5 py-4 font-medium text-right">Actions</th>
                   </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
-      </div>
+                </thead>
+                <tbody className="divide-y divide-border">
+                  {live.length === 0 && (
+                    <tr>
+                      <td
+                        colSpan={6}
+                        className="px-5 py-10 text-center text-sm text-muted-foreground"
+                      >
+                        No patients in the live queue.
+                      </td>
+                    </tr>
+                  )}
+                  {live.map((e, i) => {
+                    const mins = minutesSince(e.checked_in_at);
+                    const over = mins >= norm;
+                    return (
+                      <tr
+                        key={e.id}
+                        className={
+                          over
+                            ? "bg-alert/5 animate-alert-throb"
+                            : "hover:bg-background/50 transition-colors"
+                        }
+                      >
+                        <td className={`px-5 py-4 font-mono font-bold ${over ? "text-alert" : ""}`}>
+                          {String(i + 1).padStart(2, "0")}
+                        </td>
+                        <td className="px-5 py-4">
+                          <span className="text-sm font-semibold">
+                            {e.patient_name || "Patient"}
+                          </span>
+                          <p className="text-[10px] text-muted-foreground flex items-center gap-1">
+                            {e.service}
+                            {e.is_emergency && (
+                              <span className="text-alert font-bold uppercase">• emergency</span>
+                            )}
+                          </p>
+                        </td>
+                        <td className="px-5 py-4 text-xs text-muted-foreground">
+                          {formatTime(e.checked_in_at)}
+                        </td>
+                        <td
+                          className={`px-5 py-4 font-mono text-sm ${over ? "text-alert font-bold" : ""}`}
+                        >
+                          {formatElapsed(e.checked_in_at)}
+                        </td>
+                        <td className="px-5 py-4">
+                          <span
+                            className={`inline-block px-2 py-1 text-[10px] font-bold uppercase rounded ${
+                              over
+                                ? "bg-alert text-alert-foreground"
+                                : e.status === "in_service"
+                                  ? "bg-success/10 text-success"
+                                  : "bg-primary/10 text-primary"
+                            }`}
+                          >
+                            {over
+                              ? "Overdue"
+                              : e.status === "in_service"
+                                ? "In service"
+                                : "Waiting"}
+                          </span>
+                        </td>
+                        <td className="px-5 py-4">
+                          <div className="flex justify-end gap-1.5">
+                            {e.status === "waiting" && (
+                              <button
+                                onClick={() => callNext(e.id)}
+                                className="inline-flex items-center gap-1 text-primary text-xs font-bold hover:bg-primary/10 px-2 py-1 rounded transition-colors"
+                              >
+                                <PhoneCall className="size-3.5" /> Call
+                              </button>
+                            )}
+                            <button
+                              onClick={() => complete(e.id)}
+                              className="text-xs font-bold hover:bg-accent px-2 py-1 rounded transition-colors"
+                            >
+                              Done
+                            </button>
+                            {over && (
+                              <button
+                                onClick={() => setLogFor(e)}
+                                className="inline-flex items-center gap-1 text-alert text-xs font-bold hover:bg-alert/10 px-2 py-1 rounded transition-colors"
+                              >
+                                <AlertTriangle className="size-3.5" /> Log
+                              </button>
+                            )}
+                          </div>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </div>
         </>
       )}
-
-
 
       {logFor && (
         <LogCauseModal
@@ -381,12 +405,10 @@ function Kpi({
   alert?: boolean;
 }) {
   return (
-    <div
-      className={`bg-surface ring-1 p-4 rounded-xl ${
-        alert ? "ring-alert/30" : "ring-border"
-      }`}
-    >
-      <p className="text-[10px] font-mono text-muted-foreground uppercase tracking-widest">{label}</p>
+    <div className={`bg-surface ring-1 p-4 rounded-xl ${alert ? "ring-alert/30" : "ring-border"}`}>
+      <p className="text-[10px] font-mono text-muted-foreground uppercase tracking-widest">
+        {label}
+      </p>
       <p className={`text-2xl font-display font-extrabold ${alert ? "text-alert" : ""}`}>
         {value}
         {suffix && <span className="text-sm font-normal text-muted-foreground">{suffix}</span>}
@@ -439,7 +461,10 @@ function LogCauseModal({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-foreground/40 p-4" onClick={onClose}>
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-foreground/40 p-4"
+      onClick={onClose}
+    >
       <div
         className="w-full max-w-lg bg-surface rounded-2xl shadow-xl p-6 animate-entrance"
         onClick={(e) => e.stopPropagation()}

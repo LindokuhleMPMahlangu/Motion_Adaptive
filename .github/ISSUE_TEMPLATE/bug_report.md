@@ -1,9 +1,9 @@
 ---
 name: Bug report
 about: Report a problem with the app
-title: '[Bug] '
+title: "[Bug] "
 labels: bug
-assignees: ''
+assignees: ""
 ---
 
 ## Describe the bug

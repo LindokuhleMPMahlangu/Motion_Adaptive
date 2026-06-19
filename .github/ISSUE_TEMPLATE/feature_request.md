@@ -1,9 +1,9 @@
 ---
 name: Feature request
 about: Suggest an idea or improvement
-title: '[Feature] '
+title: "[Feature] "
 labels: enhancement
-assignees: ''
+assignees: ""
 ---
 
 ## Is your feature request related to a problem?
@@ -23,7 +23,7 @@ Any alternative approaches or workarounds.
 - [ ] Patients
 - [ ] Staff
 - [ ] Admin
-- [ ] Other: ____________
+- [ ] Other: ****\_\_\_\_****
 
 ## Additional context
 

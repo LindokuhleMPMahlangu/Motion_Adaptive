@@ -135,7 +135,9 @@ function PatientApp() {
   const bookings = entries.filter(
     (e) => e.status === "waiting" && !e.checked_in_at && e.booked_for,
   );
-  const history = entries.filter((e) => e.status === "completed" || e.status === "cancelled").slice(0, 6);
+  const history = entries
+    .filter((e) => e.status === "completed" || e.status === "cancelled")
+    .slice(0, 6);
 
   const refresh = () => {
     qc.invalidateQueries({ queryKey: ["my-entries", user?.id] });
@@ -266,7 +268,12 @@ function PatientApp() {
               </div>
             </>
           ) : (
-            <JoinPanel facilities={facilitiesQ.data ?? []} onDone={refresh} userName={fullName} userId={user?.id} />
+            <JoinPanel
+              facilities={facilitiesQ.data ?? []}
+              onDone={refresh}
+              userName={fullName}
+              userId={user?.id}
+            />
           )}
         </div>
 
@@ -364,7 +371,11 @@ function PatientApp() {
                           : "bg-muted text-muted-foreground"
                       }`}
                     >
-                      {h.status === "completed" ? (waited !== null ? `${waited} min` : "Done") : "Cancelled"}
+                      {h.status === "completed"
+                        ? waited !== null
+                          ? `${waited} min`
+                          : "Done"
+                        : "Cancelled"}
                     </span>
                   </li>
                 );
