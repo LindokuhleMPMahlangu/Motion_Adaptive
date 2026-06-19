@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 160" width="900" height="160">
+  <defs>
+    <style>
+      .bg { fill: #0a1628; }
+      .flake { fill: white; opacity: 0; animation: fall linear infinite; }
+
+      /* 30 unique snowflakes – each has a different x, size, delay, duration */
+      .f1  { cx:  30; cy: -10; r: 3.5; animation-duration: 7s;  animation-delay: 0.0s; }
+      .f2  { cx:  75; cy: -10; r: 2.0; animation-duration: 9s;  animation-delay: 1.2s; }
+      .f3  { cx: 120; cy: -10; r: 4.0; animation-duration: 6s;  animation-delay: 2.5s; }
+      .f4  { cx: 165; cy: -10; r: 2.5; animation-duration: 8s;  animation-delay: 0.7s; }
+      .f5  { cx: 210; cy: -10; r: 3.0; animation-duration: 7.5s;animation-delay: 3.1s; }
+      .f6  { cx: 255; cy: -10; r: 1.8; animation-duration: 10s; animation-delay: 1.8s; }
+      .f7  { cx: 300; cy: -10; r: 3.2; animation-duration: 6.5s;animation-delay: 4.0s; }
+      .f8  { cx: 345; cy: -10; r: 2.8; animation-duration: 8.5s;animation-delay: 0.3s; }
+      .f9  { cx: 390; cy: -10; r: 4.2; animation-duration: 7.2s;animation-delay: 2.0s; }
+      .f10 { cx: 435; cy: -10; r: 2.0; animation-duration: 9.5s;animation-delay: 3.6s; }
+      .f11 { cx: 480; cy: -10; r: 3.6; animation-duration: 6.8s;animation-delay: 1.0s; }
+      .f12 { cx: 525; cy: -10; r: 2.4; animation-duration: 8.2s;animation-delay: 4.5s; }
+      .f13 { cx: 570; cy: -10; r: 3.0; animation-duration: 7.8s;animation-delay: 2.8s; }
+      .f14 { cx: 615; cy: -10; r: 1.6; animation-duration: 10.5s;animation-delay: 0.5s; }
+      .f15 { cx: 660; cy: -10; r: 3.8; animation-duration: 6.2s;animation-delay: 3.3s; }
+      .f16 { cx: 705; cy: -10; r: 2.2; animation-duration: 9.0s;animation-delay: 1.5s; }
+      .f17 { cx: 750; cy: -10; r: 4.0; animation-duration: 7.0s;animation-delay: 4.8s; }
+      .f18 { cx: 795; cy: -10; r: 2.6; animation-duration: 8.8s;animation-delay: 2.2s; }
+      .f19 { cx: 840; cy: -10; r: 3.4; animation-duration: 6.6s;animation-delay: 0.9s; }
+      .f20 { cx: 870; cy: -10; r: 2.0; animation-duration: 9.3s;animation-delay: 3.9s; }
+      .f21 { cx:  52; cy: -10; r: 2.8; animation-duration: 8.0s;animation-delay: 5.1s; }
+      .f22 { cx:  98; cy: -10; r: 3.2; animation-duration: 7.4s;animation-delay: 1.7s; }
+      .f23 { cx: 145; cy: -10; r: 1.9; animation-duration: 10.2s;animation-delay:4.2s; }
+      .f24 { cx: 238; cy: -10; r: 3.6; animation-duration: 6.4s;animation-delay: 2.6s; }
+      .f25 { cx: 328; cy: -10; r: 2.3; animation-duration: 8.6s;animation-delay: 0.4s; }
+      .f26 { cx: 418; cy: -10; r: 4.1; animation-duration: 7.1s;animation-delay: 5.5s; }
+      .f27 { cx: 508; cy: -10; r: 2.7; animation-duration: 9.7s;animation-delay: 1.3s; }
+      .f28 { cx: 598; cy: -10; r: 3.3; animation-duration: 6.9s;animation-delay: 3.7s; }
+      .f29 { cx: 688; cy: -10; r: 2.1; animation-duration: 10.0s;animation-delay:0.8s; }
+      .f30 { cx: 778; cy: -10; r: 3.9; animation-duration: 7.6s;animation-delay: 4.4s; }
+
+      @keyframes fall {
+        0%   { transform: translateY(0px);   opacity: 0;   }
+        10%  { opacity: 0.85; }
+        90%  { opacity: 0.6;  }
+        100% { transform: translateY(175px); opacity: 0;   }
+      }
+
+      .title {
+        font-family: 'Segoe UI', Arial, sans-serif;
+        font-size: 38px;
+        font-weight: 700;
+        fill: #ffffff;
+        letter-spacing: 2px;
+      }
+      .sub {
+        font-family: 'Segoe UI', Arial, sans-serif;
+        font-size: 14px;
+        fill: #a8d0f0;
+        letter-spacing: 3px;
+      }
+      .badge-bg { fill: #0175C2; rx: 6; ry: 6; }
+      .badge-txt {
+        font-family: 'Segoe UI', Arial, sans-serif;
+        font-size: 11px;
+        fill: #ffffff;
+        font-weight: 600;
+      }
+    </style>
+  </defs>
+
+  <!-- Background gradient -->
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   style="stop-color:#0a1628;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0d2b55;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="900" height="160" fill="url(#bgGrad)" rx="10" ry="10"/>
+
+  <!-- Snowflakes -->
+  <circle class="flake f1"/>  <circle class="flake f2"/>  <circle class="flake f3"/>
+  <circle class="flake f4"/>  <circle class="flake f5"/>  <circle class="flake f6"/>
+  <circle class="flake f7"/>  <circle class="flake f8"/>  <circle class="flake f9"/>
+  <circle class="flake f10"/> <circle class="flake f11"/> <circle class="flake f12"/>
+  <circle class="flake f13"/> <circle class="flake f14"/> <circle class="flake f15"/>
+  <circle class="flake f16"/> <circle class="flake f17"/> <circle class="flake f18"/>
+  <circle class="flake f19"/> <circle class="flake f20"/> <circle class="flake f21"/>
+  <circle class="flake f22"/> <circle class="flake f23"/> <circle class="flake f24"/>
+  <circle class="flake f25"/> <circle class="flake f26"/> <circle class="flake f27"/>
+  <circle class="flake f28"/> <circle class="flake f29"/> <circle class="flake f30"/>
+
+  <!-- Snowflake symbols (❄) -->
+  <text x="822" y="42"  font-size="22" fill="white" opacity="0.18" font-family="serif">❄</text>
+  <text x="48"  y="138" font-size="16" fill="white" opacity="0.14" font-family="serif">❄</text>
+  <text x="858" y="128" font-size="14" fill="white" opacity="0.12" font-family="serif">❄</text>
+  <text x="15"  y="65"  font-size="12" fill="white" opacity="0.15" font-family="serif">❄</text>
+
+  <!-- Title text -->
+  <text x="450" y="82" text-anchor="middle" class="title">❄  Motion Adaptive Health  ❄</text>
+  <text x="450" y="108" text-anchor="middle" class="sub">WAITING TIME MANAGEMENT SYSTEM</text>
+
+  <!-- Version badge -->
+  <rect x="374" y="120" width="152" height="22" rx="6" ry="6" fill="#0175C2" opacity="0.85"/>
+  <text x="450" y="135" text-anchor="middle" class="badge-txt">v 3.5 build 5  •  Flutter Web</text>
+</svg>
