@@ -10,7 +10,7 @@ import { formatElapsed, formatTime, minutesSince } from "@/lib/time";
 import { StaffTrends } from "@/components/staff-trends";
 
 export const Route = createFileRoute("/_authenticated/staff")({
-  head: () => ({ meta: [{ title: "Staff Console — Valence Health" }] }),
+  head: () => ({ meta: [{ title: "Staff Console — MA Health" }] }),
   component: StaffConsole,
 });
 

@@ -168,7 +168,7 @@ function AuthPage() {
           </form>
 
           <p className="text-sm text-muted-foreground mt-6 text-center">
-            {isSignup ? "Already have an account?" : "New to Valence Health?"}{" "}
+            {isSignup ? "Already have an account?" : "New to MA Health?"}{" "}
             <button
               onClick={() => setIsSignup((v) => !v)}
               className="font-semibold text-primary hover:underline"

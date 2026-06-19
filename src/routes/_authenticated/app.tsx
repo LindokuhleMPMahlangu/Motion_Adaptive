@@ -18,7 +18,7 @@ import { playAlertSound } from "@/lib/alert-sound";
 import { formatDateTime, formatElapsed, formatTime, minutesSince } from "@/lib/time";
 
 export const Route = createFileRoute("/_authenticated/app")({
-  head: () => ({ meta: [{ title: "My Queue — Valence Health" }] }),
+  head: () => ({ meta: [{ title: "My Queue — MA Health" }] }),
   component: PatientApp,
 });
 

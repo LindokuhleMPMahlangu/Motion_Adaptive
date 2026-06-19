@@ -13,13 +13,13 @@ import heroImage from "@/assets/hero-waiting.jpg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Valence Health — Beat the Queue at Hospitals, Clinics & Pharmacies" },
+      { title: "Motion Adaptive Health — Beat the Queue at Hospitals, Clinics & Pharmacies" },
       {
         name: "description",
         content:
-          "Book ahead, scan yourself in for emergencies, track your live queue position, and trigger instant alerts when waiting time runs long. Valence Health tackles long healthcare queues.",
+          "Book ahead, scan yourself in for emergencies, track your live queue position, and trigger instant alerts when waiting time runs long. MA Health tackles long healthcare queues.",
       },
-      { property: "og:title", content: "Valence Health — Beat the Queue" },
+      { property: "og:title", content: "MA Health — Beat the Queue" },
       {
         property: "og:description",
         content:

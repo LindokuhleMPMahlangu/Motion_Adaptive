@@ -1,4 +1,4 @@
-# Valence Health
+# MA Health
 
 A full-stack queue-management app for hospitals, clinics, and pharmacies, designed to combat long healthcare queues (G13 problem). Patients can book in advance, scan themselves in on arrival, track their live queue position, and check themselves out. Staff manage the live queue from a clinical console, receive audible and visual alerts when waits exceed a facility's norm, and use the Stats & Trends tab to pull past data and identify areas of improvement.
 
@@ -30,7 +30,7 @@ A full-stack queue-management app for hospitals, clinics, and pharmacies, design
 
 ## Problem statement
 
-Long, uncertain waiting times are a daily source of patient dissatisfaction and operational inefficiency in healthcare. Valence Health turns the waiting room into a transparent, patient-led flow where the queue is visible in real time, and staff are alerted the moment a patient waits beyond the accepted norm.
+Long, uncertain waiting times are a daily source of patient dissatisfaction and operational inefficiency in healthcare. MA Health turns the waiting room into a transparent, patient-led flow where the queue is visible in real time, and staff are alerted the moment a patient waits beyond the accepted norm.
 
 ---
 
@@ -277,7 +277,7 @@ SUPABASE_SERVICE_ROLE_KEY
 
 ## Design system
 
-- **Visual direction:** Valence clinical system — dense, legible information display with mono accents and a professional clinical aesthetic.
+- **Visual direction:** MA Health clinical system — dense, legible information display with mono accents and a professional clinical aesthetic.
 - **Primary palette:** OKLCH-based semantic tokens (`--primary`, `--alert`, `--success`, `--surface`, `--background`, etc.).
 - **Typography:** Inter for headings and body; JetBrains Mono for timestamps, positions, and data labels.
 - **Color semantics:**
@@ -301,7 +301,7 @@ SUPABASE_SERVICE_ROLE_KEY
 
 ## License
 
-Private / proprietary — built for the Valence Health healthcare queue-management project.
+Private / proprietary — built for the MA Health healthcare queue-management project.
 
 ---
 

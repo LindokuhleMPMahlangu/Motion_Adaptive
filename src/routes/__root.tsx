@@ -86,14 +86,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Valence Health — Beat the Queue at Hospitals, Clinics & Pharmacies" },
+      { title: "Motion Adaptive Health — Beat the Queue at Hospitals, Clinics & Pharmacies" },
       {
         name: "description",
         content:
-          "Valence Health cuts waiting times. Book ahead, scan yourself in, track your live queue position, and let staff act the moment a wait runs long.",
+          "Motion Adaptive Health cuts waiting times. Book ahead, scan yourself in, track your live queue position, and let staff act the moment a wait runs long.",
       },
-      { name: "author", content: "Valence Health" },
-      { property: "og:title", content: "Valence Health — Beat the Queue" },
+      { name: "author", content: "Motion Adaptive Health" },
+      { property: "og:title", content: "Motion Adaptive Health — Beat the Queue" },
       {
         property: "og:description",
         content:
